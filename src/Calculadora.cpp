@@ -49,6 +49,7 @@ void Calculadora::ejecutar(Id idRutina) {
     int i = 0;
     while(_programa.esRutinaExistente(rutina_actual) && i < _programa.longitud(rutina_actual)) {
         Instruccion instr = _programa.instruccion(idRutina, i);
+        int first,second;
         switch (instr.operacion()) {
             case PUSH:
                 pila.push(instr.valor());
@@ -57,8 +58,8 @@ void Calculadora::ejecutar(Id idRutina) {
                 pila.push(pila.pop() + pila.pop());
                 break;
             case SUB:
-                int first = pila.pop();
-                int second = pila.pop();
+                first = pila.pop();
+                second = pila.pop();
                 pila.push(second - first); // El primer valor de la pila es el substraendo
                 break;
             case MUL:
