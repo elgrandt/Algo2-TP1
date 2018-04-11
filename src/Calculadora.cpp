@@ -48,7 +48,7 @@ void Calculadora::ejecutar(Id idRutina) {
     Id rutina_actual = idRutina;
     int i = 0;
     while(_programa.esRutinaExistente(rutina_actual) && i < _programa.longitud(rutina_actual)) {
-        Instruccion instr = _programa.instruccion(idRutina, i);
+        Instruccion instr = _programa.instruccion(rutina_actual, i);
         int first,second;
         switch (instr.operacion()) {
             case PUSH:
@@ -73,12 +73,12 @@ void Calculadora::ejecutar(Id idRutina) {
                 break;
             case JUMP:
                 rutina_actual = instr.nombre();
-                i = 0;
+                i = -1;
                 break;
             case JUMPZ:
                 if (pila.pop() == 0) {
                     rutina_actual = instr.nombre();
-                    i = 0;
+                    i = -1;
                 }
                 break;
             default:
